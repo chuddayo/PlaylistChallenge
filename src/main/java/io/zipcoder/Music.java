@@ -9,6 +9,18 @@ public class Music {
     }
 
     public Integer selection(Integer startIndex, String selection){
-        return null;
+        int playListLength = playList.length;
+        int closest = playListLength;
+
+        for (int i = 0; i < playListLength; i++) {
+            if (playList[i].equals(selection)) {
+                int backIndex = playListLength - Math.abs(i - startIndex);
+                if (closest > Math.abs(i - startIndex) || closest > backIndex) {
+                    closest = Math.min(Math.abs(i - startIndex), backIndex);
+                }
+            }
+        }
+
+        return closest;
     }
 }
